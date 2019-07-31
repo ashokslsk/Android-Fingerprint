@@ -25,3 +25,27 @@ if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 }
 ```
 
+Other checks are
+
+```kotlin
+// check for : OS version
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+    // Check for : hardware
+    fingerprintManagerCompat = FingerprintManagerCompat.from(this)
+    keygaurdManager = getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+
+    if (!fingerprintManagerCompat?.isHardwareDetected){
+        subtitle.text = "Oh! Seems like your device has no fingerprint scanner"
+    }else if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED){
+        subtitle.text = "No permission"
+    }else if (!keygaurdManager?.isKeyguardSecure){
+        subtitle.text = "Set any lock mechanism in settings"
+    }else if(!fingerprintManagerCompat.hasEnrolledFingerprints()){
+        subtitle.text = "No fingerprints enrolled, Add atleast one finger print"
+    }else {
+        subtitle.text = "Place your finger on the hardware fingerprint scanner"
+
+    }
+}
+```
+
