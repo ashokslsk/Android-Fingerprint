@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
                 subtitle.text = "No fingerprints enrolled, Add atleast one finger print"
             }else {
                 subtitle.text = "Place your finger on the hardware fingerprint scanner"
-                generateKey();
+                generateKey()
 
                 if (cipherInit()) {
                     val cryptoObject = FingerprintManagerCompat.CryptoObject(cipher)
