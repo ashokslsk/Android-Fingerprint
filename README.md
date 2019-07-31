@@ -12,3 +12,16 @@ Modern Android mobile phones are equipped with fingerprint sensor for security r
 
 
 
+```kotlin
+// check for : OS version
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+    // Check for : hardware
+    fingerprintManagerCompat = FingerprintManagerCompat.from(this)
+
+    if (!fingerprintManagerCompat?.isHardwareDetected){
+        subtitle.text = "Oh! Seems like your device has no fingerprint scanner"
+        }
+    }
+}
+```
+
